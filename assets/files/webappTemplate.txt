@@ -1,0 +1,12 @@
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    fmt.Println("starting web app on port {{port}}...")
+    http.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {http.Error(w, "{{statusMessage}}", {{statusCode}})})
+    http.ListenAndServe(":{{port}}", nil)
+}
