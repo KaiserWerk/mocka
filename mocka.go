@@ -93,6 +93,7 @@ func (s *Service) Build() error {
 	}
 
 	target := filepath.Join(tmpDir, "mocka")
+	s.exePath = target
 	if runtime.GOOS == "windows" {
 		target += ".exe"
 	}
