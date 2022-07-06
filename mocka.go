@@ -93,12 +93,17 @@ func (s *Service) Build() error {
 	}
 
 	target := filepath.Join(tmpDir, "mocka")
-	s.exePath = target
 	if runtime.GOOS == "windows" {
 		target += ".exe"
 	}
+
 	cmd := exec.Command("go", "build", "-o", target, source)
-	return cmd.Run()
+	err = cmd.Run()
+	if err != nil {
+		return err
+	}
+	s.exePath = target
+	return nil
 }
 
 // WriteExe copies the executable content into w.
